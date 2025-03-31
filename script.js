@@ -3,38 +3,28 @@ const menuOpenButton=document.querySelector("#menu-open-button");
 const menuCloseButton=document.querySelector("#menu-close-button");
 
 menuOpenButton.addEventListener('click',()=>{
-    // Toggle mobile menu visiblity
     document.body.classList.toggle("show-mobile-menu")
 })
 
-// close menu when close button is clicked
 menuCloseButton.addEventListener("click",()=> menuOpenButton.click());
 
-// close menu when  nav-link is clicked
 navLinks.forEach(link =>{
     link.addEventListener("click" ,()=>menuOpenButton.click())
 })
-
-// Initialize Swiper
 
 const swiper2 = new Swiper('.slider-wrapper', {
     loop: true,
     grabCursor:true,
     spaceBetween:25,
-  
-    // If we need pagination
     pagination: {
       el: '.swiper-pagination',
       clickable:true,
       dynamicBullets:true
     },
-  
-    // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    // Responsive breakpoints
     breakpoints:{
         0:{
             slidesPerView:1
@@ -47,7 +37,7 @@ const swiper2 = new Swiper('.slider-wrapper', {
         },
     }
   });
-  // Initialize Swiper for testimonials with animation
+
 const swiper = new Swiper(".swiper", {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -69,56 +59,47 @@ const swiper = new Swiper(".swiper", {
       prevEl: ".swiper-button-prev",
     },
   });
-  
-  // Mobile menu functionality
-  const menuOpenBtn = document.querySelector("#menu-open-button");
-  const menuCloseBtn = document.querySelector("#menu-close-button");
-  
-  menuOpenBtn.addEventListener("click", () => {
+
+const menuOpenBtn = document.querySelector("#menu-open-button");
+const menuCloseBtn = document.querySelector("#menu-close-button");
+
+menuOpenBtn.addEventListener("click", () => {
     document.body.classList.add("show-mobile-menu");
-  });
-  
-  menuCloseBtn.addEventListener("click", () => {
+});
+
+menuCloseBtn.addEventListener("click", () => {
     document.body.classList.remove("show-mobile-menu");
-  });
-  
-  navLinks.forEach((link) => {
+});
+
+navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       document.body.classList.remove("show-mobile-menu");
     });
-  });
-  
-  // Scroll animation - animate elements when they enter viewport
-  const scrollElements = document.querySelectorAll(".section-title, .about-details, .menu-item, .gallery-item, .contact-info, .form-input");
-  
-  // Add animate-on-scroll class to all elements we want to animate on scroll
-  scrollElements.forEach((el) => {
+});
+
+const scrollElements = document.querySelectorAll(".section-title, .about-details, .menu-item, .gallery-item, .contact-info, .form-input");
+
+scrollElements.forEach((el) => {
     el.classList.add("animate-on-scroll");
-  });
-  
-  // Function to check if element is in viewport
-  const elementInView = (el, percentageScroll = 100) => {
+});
+
+const elementInView = (el, percentageScroll = 100) => {
     const elementTop = el.getBoundingClientRect().top;
-    const elementHeight = el.getBoundingClientRect().height;
-    
     return (
       elementTop <= 
       ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
     );
-  };
-  
-  // Function to display element when in viewport
-  const displayScrollElement = (element) => {
+};
+
+const displayScrollElement = (element) => {
     element.classList.add("animate");
-  };
-  
-  // Function to hide element when not in viewport
-  const hideScrollElement = (element) => {
+};
+
+const hideScrollElement = (element) => {
     element.classList.remove("animate");
-  };
-  
-  // Function to handle scroll animation
-  const handleScrollAnimation = () => {
+};
+
+const handleScrollAnimation = () => {
     scrollElements.forEach((el) => {
       if (elementInView(el, 80)) {
         displayScrollElement(el);
@@ -126,30 +107,26 @@ const swiper = new Swiper(".swiper", {
         hideScrollElement(el);
       }
     });
-  };
-  
-  // Add event listener for scroll
-  window.addEventListener("scroll", () => {
+};
+
+window.addEventListener("scroll", () => {
     handleScrollAnimation();
-  });
-  
-  // Initial check on page load
-  window.addEventListener("load", () => {
+});
+
+window.addEventListener("load", () => {
     handleScrollAnimation();
-  });
-  
-  // Floating animation for coffee cup icon
-  const coffeeLogo = document.querySelector(".logo-text");
-  setInterval(() => {
+});
+
+const coffeeLogo = document.querySelector(".logo-text");
+setInterval(() => {
     coffeeLogo.style.transform = "translateY(-5px)";
     setTimeout(() => {
       coffeeLogo.style.transform = "translateY(0)";
     }, 500);
-  }, 3000);
-  
-  // Adding hover animations for interactive elements
-  const buttons = document.querySelectorAll(".button, .submit-button");
-  buttons.forEach(button => {
+}, 3000);
+
+const buttons = document.querySelectorAll(".button, .submit-button");
+buttons.forEach(button => {
     button.addEventListener("mouseenter", () => {
       button.style.transition = "all 0.3s ease";
       button.style.transform = "translateY(-3px)";
@@ -160,11 +137,10 @@ const swiper = new Swiper(".swiper", {
       button.style.transform = "translateY(0)";
       button.style.boxShadow = "none";
     });
-  });
-  
-  // Add subtle parallax effect to gallery images
-  const galleryImages = document.querySelectorAll(".gallery-image");
-  window.addEventListener("mousemove", (e) => {
+});
+
+const galleryImages = document.querySelectorAll(".gallery-image");
+window.addEventListener("mousemove", (e) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
     
@@ -173,4 +149,4 @@ const swiper = new Swiper(".swiper", {
       const moveY = (y - 0.5) * 10;
       image.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
-  });
+});
